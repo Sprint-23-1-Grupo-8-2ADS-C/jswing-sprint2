@@ -11,4 +11,18 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>sptech.jswing.sprint2.JswingSprint2</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.3.jre17</version>
+        </dependency>
+        <!-- https://github.com/Britooo/looca-api -->
+        <dependency>
+            <groupId>com.github.britooo</groupId>
+            <artifactId>looca-api</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+    </dependencies>
 </project>
