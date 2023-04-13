@@ -17,6 +17,7 @@ public class Login extends javax.swing.JFrame {
         this.looca = new Looca();
         this.models = new Models();
         this.testSystem();
+        this.testConnection();
     }
     
     private void testConnection() {
