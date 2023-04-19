@@ -1,152 +1,99 @@
 package sptech.jswing.sprint2.main;
 
-import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.sistema.Sistema;
-import java.util.List;
-import sptech.jswing.sprint2.controller.Totem;
-
 /**
  *
  * @author marcusgoncalves
  */
-public class Login extends javax.swing.JFrame {
-
-    Looca looca;
-    Models models;
-    Totem totem;
-
+public class Login extends javax.swing.JFrame {    
+    //Cria o formulário de login
     public Login() {
         initComponents();
-        this.models = new Models();
-        this.looca = new Looca();
-        this.totem = new Totem();
-
-        this.testSystem();
-        this.estabelecerConexao();
     }
 
-    private void estabelecerConexao() {
-        models.getConnection();
-        System.out.println("Conectado!");
-    }
-
-    private void testSystem() {
-        Sistema sistema = looca.getSistema();
-        String frase = String.format("Teste do sistema: %s", sistema.getSistemaOperacional());
-        System.out.println(frase);
-    }
-
+    //Não mexemos nesse código, pode quebrar o JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
-        lblTitulo = new javax.swing.JLabel();
-        iptIdTotem = new javax.swing.JTextField();
+        lblTituloInfo = new javax.swing.JLabel();
+        iptToken = new javax.swing.JTextField();
         btnConectar = new javax.swing.JButton();
+        imgBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Conecte seu totem");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(0, 10, 23));
+        setLocation(new java.awt.Point(25, 25));
+        setMaximumSize(new java.awt.Dimension(1440, 1024));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setMixingCutoutShape(null);
+        setPreferredSize(new java.awt.Dimension(1440, 1024));
+        setSize(new java.awt.Dimension(1440, 1024));
 
-        jPanel1.setBackground(new java.awt.Color(0, 10, 28));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.setSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.setLayout(null);
 
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo.png"))); // NOI18N
-        lblLogo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblTituloInfo.setFont(new java.awt.Font("Roboto Slab", 0, 64)); // NOI18N
+        lblTituloInfo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloInfo.setText("Conecte o seu totem");
+        jPanel1.add(lblTituloInfo);
+        lblTituloInfo.setBounds(400, 180, 602, 86);
 
-        lblTitulo.setFont(new java.awt.Font("Roboto Slab", 0, 52)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Conecte seu totem");
+        iptToken.setBackground(new java.awt.Color(217, 217, 217));
+        iptToken.setFont(new java.awt.Font("ABeeZee", 0, 32)); // NOI18N
+        iptToken.setForeground(new java.awt.Color(255, 255, 255));
+        iptToken.setText("Token:");
+        iptToken.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        iptToken.setMaximumSize(new java.awt.Dimension(425, 82));
+        iptToken.setMinimumSize(new java.awt.Dimension(425, 82));
+        iptToken.setPreferredSize(new java.awt.Dimension(425, 82));
+        iptToken.setSize(new java.awt.Dimension(425, 82));
+        jPanel1.add(iptToken);
+        iptToken.setBounds(480, 360, 425, 82);
 
-        iptIdTotem.setBackground(new java.awt.Color(217, 217, 217));
-        iptIdTotem.setFont(new java.awt.Font("ABeeZee", 0, 28)); // NOI18N
-        iptIdTotem.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        iptIdTotem.setText("Tokem:");
-        iptIdTotem.setActionCommand("<Not Set>");
-        iptIdTotem.setPreferredSize(new java.awt.Dimension(350, 70));
-
+        btnConectar.setBackground(new java.awt.Color(6, 83, 182));
+        btnConectar.setFont(new java.awt.Font("Play", 1, 32)); // NOI18N
+        btnConectar.setForeground(new java.awt.Color(255, 255, 255));
         btnConectar.setText("Conectar");
-        btnConectar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConectarActionPerformed(evt);
-            }
-        });
+        btnConectar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConectar.setMaximumSize(new java.awt.Dimension(425, 79));
+        btnConectar.setMinimumSize(new java.awt.Dimension(425, 79));
+        btnConectar.setSize(new java.awt.Dimension(425, 79));
+        jPanel1.add(btnConectar);
+        btnConectar.setBounds(480, 520, 425, 79);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(iptIdTotem, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConectar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(iptIdTotem, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196)
-                        .addComponent(btnConectar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
+        imgBackground.setBackground(new java.awt.Color(255, 255, 255));
+        imgBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg.png"))); // NOI18N
+        imgBackground.setText("jLabel2");
+        imgBackground.setMaximumSize(new java.awt.Dimension(1444, 1024));
+        imgBackground.setMinimumSize(new java.awt.Dimension(1280, 720));
+        imgBackground.setPreferredSize(new java.awt.Dimension(1440, 1024));
+        imgBackground.setSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.add(imgBackground);
+        imgBackground.setBounds(0, 0, 1440, 1024);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Função chamada!");
-        String tokenDigitado = iptIdTotem.getText();
-
-        List<Totem> totens = totem.buscarTotemPeloToken(tokenDigitado);
-
-        if (!totens.isEmpty()) {
-            for (int i = 0; i < totens.size(); i++) {
-                Totem totemAtual = totens.get(i);
-
-                if (totemAtual.getTokem().equals(tokenDigitado)) {
-                    System.out.println("Totem encontrado! Capturando dados.");
-                } else {
-                    System.out.println("O token não é igual!");
-                }
-            }
-        } else {
-            System.out.println("Não achei nenhum totem com o token " + tokenDigitado + " :(");
-        }
-    }//GEN-LAST:event_btnConectarActionPerformed
-
     public static void main(String args[]) {
-
+        /* Mostra a tela de login */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
@@ -156,9 +103,9 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConectar;
-    private javax.swing.JTextField iptIdTotem;
+    private javax.swing.JLabel imgBackground;
+    private javax.swing.JTextField iptToken;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTituloInfo;
     // End of variables declaration//GEN-END:variables
 }

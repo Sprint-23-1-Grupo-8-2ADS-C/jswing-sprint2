@@ -1,7 +1,5 @@
-package sptech.jswing.sprint2.main;
+package sptech.jswing.sprint2.models;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -9,14 +7,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author marcusgoncalves
  */
-public class Models {
-    
+public class Connection {
     private JdbcTemplate connection;
 
-    public Models() {
+    public Connection() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://airplane-solutions.database.windows.net:1433;database=bd-airplane-solutions;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
+        dataSource.setUrl("jdbc:sqlserver://airplane-solutions.database.windows.net:1433;"
+                + "database=bd-airplane-solutions;encrypt=true;trustServerCertificate=false;"
+                + "hostNameInCertificate=*.database.windows.net;");
         dataSource.setUsername("totemInfo@airplane-solutions");
         dataSource.setPassword("Totem_!nf0");
         
@@ -26,4 +25,5 @@ public class Models {
     public JdbcTemplate getConnection() {
         return connection;
     }
+    
 }
