@@ -1,10 +1,14 @@
 package sptech.jswing.sprint2.main;
 
+import com.github.britooo.looca.api.core.Looca;
+
 /**
  *
  * @author marcusgoncalves
  */
-public class Login extends javax.swing.JFrame {    
+public class Login extends javax.swing.JFrame {  
+    Looca looca = new Looca();
+    
     //Cria o formulário de login
     public Login() {
         initComponents();
@@ -46,7 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         iptToken.setBackground(new java.awt.Color(217, 217, 217));
         iptToken.setFont(new java.awt.Font("ABeeZee", 0, 32)); // NOI18N
-        iptToken.setForeground(new java.awt.Color(255, 255, 255));
+        iptToken.setForeground(new java.awt.Color(0, 0, 0));
         iptToken.setText("Token:");
         iptToken.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         iptToken.setMaximumSize(new java.awt.Dimension(425, 82));
@@ -60,9 +64,12 @@ public class Login extends javax.swing.JFrame {
         btnConectar.setFont(new java.awt.Font("Play", 1, 32)); // NOI18N
         btnConectar.setForeground(new java.awt.Color(255, 255, 255));
         btnConectar.setText("Conectar");
+        btnConectar.setBorder(null);
+        btnConectar.setBorderPainted(false);
         btnConectar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConectar.setMaximumSize(new java.awt.Dimension(425, 79));
         btnConectar.setMinimumSize(new java.awt.Dimension(425, 79));
+        btnConectar.setOpaque(true);
         btnConectar.setSize(new java.awt.Dimension(425, 79));
         jPanel1.add(btnConectar);
         btnConectar.setBounds(480, 520, 425, 79);
@@ -70,7 +77,7 @@ public class Login extends javax.swing.JFrame {
         imgBackground.setBackground(new java.awt.Color(255, 255, 255));
         imgBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg.png"))); // NOI18N
         imgBackground.setText("jLabel2");
-        imgBackground.setMaximumSize(new java.awt.Dimension(1444, 1024));
+        imgBackground.setMaximumSize(new java.awt.Dimension(1440, 1024));
         imgBackground.setMinimumSize(new java.awt.Dimension(1280, 720));
         imgBackground.setPreferredSize(new java.awt.Dimension(1440, 1024));
         imgBackground.setSize(new java.awt.Dimension(1440, 1024));
@@ -93,7 +100,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        /* Mostra a tela de login */
+        // Mostra a tela de login 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);

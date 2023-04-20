@@ -1,4 +1,3 @@
 # Ignorando arquivos que o macOS cria
 .DS_Store
 ./**/.DS_Store
-/jswing-sprint2/target/
