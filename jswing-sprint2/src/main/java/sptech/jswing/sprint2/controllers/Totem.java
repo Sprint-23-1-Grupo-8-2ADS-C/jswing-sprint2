@@ -1,9 +1,6 @@
 package sptech.jswing.sprint2.controllers;
 
-/**
- *
- * @author marcusgoncalves
- */
+
 public class Totem {
     private Integer id;
     private Integer idCompanhia;
@@ -31,6 +28,9 @@ public class Totem {
         this.modeloDisco = modeloDisco;
         this.localizacaoTotem = localizacaoTotem;
         this.token = token;
+    }
+
+    public Totem() {
     }
 
     public Integer getId() {

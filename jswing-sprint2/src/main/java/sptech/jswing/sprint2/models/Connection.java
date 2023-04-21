@@ -23,6 +23,7 @@ public class Connection {
     }
     
     public JdbcTemplate getConnection() {
+        System.out.println("Acessando o banco de dados!");
         return connection;
     }
     
