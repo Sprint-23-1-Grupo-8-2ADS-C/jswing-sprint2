@@ -7,24 +7,24 @@ public class Totem {
     private String fabricante;
     private String arquitetura;
     private String sistemaOperacional;
-    private String descricaoProcessador;
-    private String idCPU;
-    private String totalMemoriaRam;
-    private String totalEspacoDisco;
+    private String processador;
+    private String codProcessador;
+    private String totalRam;
+    private String capacidadeTotalDisco;
     private String modeloDisco;
     private String localizacaoTotem;
     private String token;
 
-    public Totem(Integer id, Integer idCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String descricaoProcessador, String idCPU, String totalMemoriaRam, String totalEspacoDisco, String modeloDisco, String localizacaoTotem, String token) {
+    public Totem(Integer id, Integer idCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String codProcessador, String totalRam, String capacidadeTotalDisco, String modeloDisco, String localizacaoTotem, String token) {
         this.id = id;
         this.idCompanhia = idCompanhia;
         this.fabricante = fabricante;
         this.arquitetura = arquitetura;
         this.sistemaOperacional = sistemaOperacional;
-        this.descricaoProcessador = descricaoProcessador;
-        this.idCPU = idCPU;
-        this.totalMemoriaRam = totalMemoriaRam;
-        this.totalEspacoDisco = totalEspacoDisco;
+        this.processador = processador;
+        this.codProcessador = codProcessador;
+        this.totalRam = totalRam;
+        this.capacidadeTotalDisco = capacidadeTotalDisco;
         this.modeloDisco = modeloDisco;
         this.localizacaoTotem = localizacaoTotem;
         this.token = token;
@@ -73,36 +73,36 @@ public class Totem {
         this.sistemaOperacional = sistemaOperacional;
     }
 
-    public String getDescricaoProcessador() {
-        return descricaoProcessador;
+    public String getProcessador() {
+        return processador;
     }
 
-    public void setDescricaoProcessador(String descricaoProcessador) {
-        this.descricaoProcessador = descricaoProcessador;
+    public void setProcessador(String processador) {
+        this.processador = processador;
     }
 
-    public String getIdCPU() {
-        return idCPU;
+    public String getCodProcessador() {
+        return codProcessador;
     }
 
-    public void setIdCPU(String idCPU) {
-        this.idCPU = idCPU;
+    public void setCodProcessador(String codProcessador) {
+        this.codProcessador = codProcessador;
     }
 
-    public String getTotalMemoriaRam() {
-        return totalMemoriaRam;
+    public String getTotalRam() {
+        return totalRam;
     }
 
-    public void setTotalMemoriaRam(String totalMemoriaRam) {
-        this.totalMemoriaRam = totalMemoriaRam;
+    public void setTotalRam(String totalRam) {
+        this.totalRam = totalRam;
     }
 
-    public String getTotalEspacoDisco() {
-        return totalEspacoDisco;
+    public String getCapacidadeTotalDisco() {
+        return capacidadeTotalDisco;
     }
 
-    public void setTotalEspacoDisco(String totalEspacoDisco) {
-        this.totalEspacoDisco = totalEspacoDisco;
+    public void setCapacidadeTotalDisco(String capacidadeTotalDisco) {
+        this.capacidadeTotalDisco = capacidadeTotalDisco;
     }
 
     public String getModeloDisco() {
@@ -129,13 +129,14 @@ public class Totem {
         this.token = token;
     }
 
+    
     @Override
     public String toString() {
         return "Totem{" + "id=" + id + ", idCompanhia=" + idCompanhia + 
                 ", fabricante=" + fabricante + ", arquitetura=" + arquitetura + 
                 ", sistemaOperacional=" + sistemaOperacional + 
-                ", descricaoProcessador=" + descricaoProcessador + ", idCPU=" + idCPU +
-                ", totalMemoriaRam=" + totalMemoriaRam + ", totalEspacoDisco=" + totalEspacoDisco 
+                ", processador=" + processador + ", codProcessador=" + codProcessador +
+                ", totalRam=" + totalRam + ", capacidadeTotalDisco=" + capacidadeTotalDisco 
                 + ", modeloDisco=" + modeloDisco + ", localizacaoTotem=" + localizacaoTotem + ", token=" + token + '}';
     }
     

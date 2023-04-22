@@ -1,119 +1,64 @@
 package sptech.jswing.sprint2.controllers;
 
-/**
- *
- * @author marcusgoncalves
- */
+import java.util.List;
+
+
 public class CPU {
-    private String fabricante;
-    private String nome;
-    private String idCpu;
-    private String identificador;
-    private String microarquitetura;
-    private Integer frequencia;
-    private Integer qtdSockets;
-    private Integer qtdCores;
-    private Integer qtdThreads;
-    private Double usoDaCpu;
+    private Double usoCpu;
+    private Double frequencia;
+    
+    //A tipagem da lista será mudada.
+    private List<String> processos;
+    
+    //Tipagem será modificada.
+    private String dataHora;
 
-    public CPU(String fabricante, String nome, String idCpu, String identificador, String microarquitetura, Integer frequencia, Integer qtdSockets, Integer qtdCores, Integer qtdThreads, Double usoDaCpu) {
-        this.fabricante = fabricante;
-        this.nome = nome;
-        this.idCpu = idCpu;
-        this.identificador = identificador;
-        this.microarquitetura = microarquitetura;
+    public CPU(Double usoCpu, Double frequencia, List<String> processos, String dataHora) {
+        this.usoCpu = usoCpu;
         this.frequencia = frequencia;
-        this.qtdSockets = qtdSockets;
-        this.qtdCores = qtdCores;
-        this.qtdThreads = qtdThreads;
-        this.usoDaCpu = usoDaCpu;
+        this.processos = processos;
+        this.dataHora = dataHora;
     }
 
-    public String getFabricante() {
-        return fabricante;
+    public CPU() {
     }
 
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
+    public Double getUsoCpu() {
+        return usoCpu;
     }
 
-    public String getNome() {
-        return nome;
+    public void setUsoCpu(Double usoCpu) {
+        this.usoCpu = usoCpu;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getIdCpu() {
-        return idCpu;
-    }
-
-    public void setIdCpu(String idCpu) {
-        this.idCpu = idCpu;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    public String getMicroarquitetura() {
-        return microarquitetura;
-    }
-
-    public void setMicroarquitetura(String microarquitetura) {
-        this.microarquitetura = microarquitetura;
-    }
-
-    public Integer getFrequencia() {
+    public Double getFrequencia() {
         return frequencia;
     }
 
-    public void setFrequencia(Integer frequencia) {
+    public void setFrequencia(Double frequencia) {
         this.frequencia = frequencia;
     }
 
-    public Integer getQtdSockets() {
-        return qtdSockets;
+    public List<String> getProcessos() {
+        return processos;
     }
 
-    public void setQtdSockets(Integer qtdSockets) {
-        this.qtdSockets = qtdSockets;
+    public void setProcessos(List<String> processos) {
+        this.processos = processos;
     }
 
-    public Integer getQtdCores() {
-        return qtdCores;
+    public String getDataHora() {
+        return dataHora;
     }
 
-    public void setQtdCores(Integer qtdCores) {
-        this.qtdCores = qtdCores;
-    }
-
-    public Integer getQtdThreads() {
-        return qtdThreads;
-    }
-
-    public void setQtdThreads(Integer qtdThreads) {
-        this.qtdThreads = qtdThreads;
-    }
-
-    public Double getUsoDaCpu() {
-        return usoDaCpu;
-    }
-
-    public void setUsoDaCpu(Double usoDaCpu) {
-        this.usoDaCpu = usoDaCpu;
+    public void setDataHora(String dataHora) {
+        this.dataHora = dataHora;
     }
 
     @Override
     public String toString() {
-        return "CPU{" + "fabricante=" + fabricante + ", nome=" + nome + ", idCpu=" + idCpu + ", identificador=" + identificador + ", microarquitetura=" + microarquitetura + ", frequencia=" + frequencia + ", qtdSockets=" + qtdSockets + ", qtdCores=" + qtdCores + ", qtdThreads=" + qtdThreads + ", usoDaCpu=" + usoDaCpu + '}';
+        return "CPU{" + "usoCpu=" + usoCpu + ", frequencia=" + frequencia + ", processos=" + processos + ", dataHora=" + dataHora + '}';
     }
-
     
     
 }

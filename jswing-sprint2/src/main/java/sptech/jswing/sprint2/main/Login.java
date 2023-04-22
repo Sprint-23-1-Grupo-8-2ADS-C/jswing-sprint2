@@ -1,7 +1,6 @@
 package sptech.jswing.sprint2.main;
 
 import com.github.britooo.looca.api.core.Looca;
-import java.util.List;
 import sptech.jswing.sprint2.controllers.Totem;
 import sptech.jswing.sprint2.models.TotemCRUD;
 

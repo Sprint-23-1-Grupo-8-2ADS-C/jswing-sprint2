@@ -7,65 +7,59 @@ import java.util.List;
  * @author marcusgoncalves
  */
 public class Disco {
-    private List<Disco> discos;
-    private Integer qtdDiscos;
-    private Integer qtdVolumes;
-    private Long getTamanhoTotal;
-    private List<Disco> volumes;
+    private Long valorDisponivel;
+    private Long valorEmUso;
+    private Long qtdLeituras;
+    
+    //Tipagem será modificada depois
+    private String dataHora;
 
-    public Disco(List<Disco> discos, Integer qtdDiscos, Integer qtdVolumes, Long getTamanhoTotal, List<Disco> volumes) {
-        this.discos = discos;
-        this.qtdDiscos = qtdDiscos;
-        this.qtdVolumes = qtdVolumes;
-        this.getTamanhoTotal = getTamanhoTotal;
-        this.volumes = volumes;
+    public Disco(Long valorDisponivel, Long valorEmUso, Long qtdLeituras, String dataHora) {
+        this.valorDisponivel = valorDisponivel;
+        this.valorEmUso = valorEmUso;
+        this.qtdLeituras = qtdLeituras;
+        this.dataHora = dataHora;
     }
 
-    public List<Disco> getDiscos() {
-        return discos;
+    public Disco() {
     }
 
-    public void setDiscos(List<Disco> discos) {
-        this.discos = discos;
+    public Long getValorDisponivel() {
+        return valorDisponivel;
     }
 
-    public Integer getQtdDiscos() {
-        return qtdDiscos;
+    public void setValorDisponivel(Long valorDisponivel) {
+        this.valorDisponivel = valorDisponivel;
     }
 
-    public void setQtdDiscos(Integer qtdDiscos) {
-        this.qtdDiscos = qtdDiscos;
+    public Long getValorEmUso() {
+        return valorEmUso;
     }
 
-    public Integer getQtdVolumes() {
-        return qtdVolumes;
+    public void setValorEmUso(Long valorEmUso) {
+        this.valorEmUso = valorEmUso;
     }
 
-    public void setQtdVolumes(Integer qtdVolumes) {
-        this.qtdVolumes = qtdVolumes;
+    public Long getQtdLeituras() {
+        return qtdLeituras;
     }
 
-    public Long getGetTamanhoTotal() {
-        return getTamanhoTotal;
+    public void setQtdLeituras(Long qtdLeituras) {
+        this.qtdLeituras = qtdLeituras;
     }
 
-    public void setGetTamanhoTotal(Long getTamanhoTotal) {
-        this.getTamanhoTotal = getTamanhoTotal;
+    public String getDataHora() {
+        return dataHora;
     }
 
-    public List<Disco> getVolumes() {
-        return volumes;
-    }
-
-    public void setVolumes(List<Disco> volumes) {
-        this.volumes = volumes;
+    public void setDataHora(String dataHora) {
+        this.dataHora = dataHora;
     }
 
     @Override
     public String toString() {
-        return "Disco{" + "discos=" + discos + ", qtdDiscos=" + qtdDiscos + ", qtdVolumes=" + qtdVolumes + ", getTamanhoTotal=" + getTamanhoTotal + ", volumes=" + volumes + '}';
+        return "Disco{" + "valorDisponivel=" + valorDisponivel + ", valorEmUso=" + valorEmUso + ", qtdLeituras=" + qtdLeituras + ", dataHora=" + dataHora + '}';
     }
-
     
     
 }
