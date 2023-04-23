@@ -8,9 +8,10 @@ import sptech.jswing.sprint2.models.TotemCRUD;
  *
  * @author marcusgoncalves
  */
-public class Login extends javax.swing.JFrame {  
+public class Login extends javax.swing.JFrame {
+
     Looca looca = new Looca();
-    
+
     //Cria o formulário de login
     public Login() {
         initComponents();
@@ -110,22 +111,34 @@ public class Login extends javax.swing.JFrame {
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         TotemCRUD totemCrud = new TotemCRUD();
         Totem totem;
-        
+
         String tokenDigitado = iptToken.getText();
-        
+
         totem = totemCrud.getTotemByToken(tokenDigitado);
-        
+
         if (totem != null) {
             System.out.println("Select feito!");
-            if (tokenDigitado.equalsIgnoreCase(totem.getToken())) {
-                System.out.println("Token válido! Começando capturas");
+            if (tokenDigitado.equals(totem.getToken())) {
+                System.out.println("Token válido! Redirecionando e iniciando capturas");
+
+                Summary in = new Summary();
+
+                in.setInfos(totem);
+
+                in.setLocationRelativeTo(null);
+                in.setVisible(true);
+                in.setResizable(false);
+
+                this.dispose();
+
             } else {
                 System.out.println("Totem não encontrado com o token " + tokenDigitado);
             }
         } else {
             System.out.println("Token/Totem não encontrado no sistema, tente novamente!");
         }
-        
+
+
     }//GEN-LAST:event_btnConectarActionPerformed
 
     public static void main(String args[]) {

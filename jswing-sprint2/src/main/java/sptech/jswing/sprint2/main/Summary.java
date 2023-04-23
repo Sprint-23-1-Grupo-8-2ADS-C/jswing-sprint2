@@ -1,11 +1,37 @@
 package sptech.jswing.sprint2.main;
 
+import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.rede.RedeInterface;
+import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
+import java.util.List;
+import sptech.jswing.sprint2.controllers.Totem;
 
 public class Summary extends javax.swing.JFrame {
 
- 
+    Looca looca;
+
     public Summary() {
         initComponents();
+        looca = new Looca();
+    }
+
+    public void setInfos(Totem totemAchado) {
+        lblNomeValue.setText(lblNomeValue.getText() + " " + totemAchado.getIdTotem());
+        lblSOValue.setText(looca.getSistema().getSistemaOperacional());
+        lblProcessadorValue.setText(totemAchado.getProcessador());
+        lblRamValue.setText(totemAchado.getTotalRam() + "gb");
+        lblDiscoValue.setText(totemAchado.getCapacidadeTotalDisco() + "gb");
+        lblIPValue.setText(setIp());
+    }
+
+    public String setIp() {
+        RedeInterfaceGroup rede = looca.getRede().getGrupoDeInterfaces();
+        List<RedeInterface> interfaces = rede.getInterfaces();
+        List<String> ipv4 = interfaces.get(1).getEnderecoIpv4();
+
+        String ipv4Formatado = ipv4.toString().replace("[", "").replace("]", "");
+
+        return ipv4Formatado;
     }
 
     @SuppressWarnings("unchecked")
@@ -32,9 +58,7 @@ public class Summary extends javax.swing.JFrame {
         lblBgSummary = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -58,7 +82,7 @@ public class Summary extends javax.swing.JFrame {
 
         lblNomeValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblNomeValue.setForeground(new java.awt.Color(248, 252, 255));
-        lblNomeValue.setText("Totem 01");
+        lblNomeValue.setText("Totem");
         jPanel1.add(lblNomeValue);
         lblNomeValue.setBounds(240, 230, 250, 40);
 
@@ -84,7 +108,7 @@ public class Summary extends javax.swing.JFrame {
         lblRamValue.setForeground(new java.awt.Color(248, 252, 255));
         lblRamValue.setText("16gb");
         jPanel1.add(lblRamValue);
-        lblRamValue.setBounds(240, 440, 130, 50);
+        lblRamValue.setBounds(240, 430, 190, 60);
 
         lblIP.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblIP.setForeground(new java.awt.Color(190, 212, 227));
@@ -120,7 +144,7 @@ public class Summary extends javax.swing.JFrame {
         lblProcessadorValue.setForeground(new java.awt.Color(248, 255, 255));
         lblProcessadorValue.setText("i5-1000");
         jPanel1.add(lblProcessadorValue);
-        lblProcessadorValue.setBounds(770, 320, 270, 60);
+        lblProcessadorValue.setBounds(770, 320, 320, 60);
 
         lblDisco.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(190, 212, 227));
@@ -144,6 +168,7 @@ public class Summary extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusable(false);
         jButton1.setMixingCutoutShape(null);
+        jButton1.setOpaque(true);
         jPanel1.add(jButton1);
         jButton1.setBounds(1018, 30, 200, 50);
 

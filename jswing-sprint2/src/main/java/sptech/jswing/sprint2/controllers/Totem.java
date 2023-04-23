@@ -2,8 +2,8 @@ package sptech.jswing.sprint2.controllers;
 
 
 public class Totem {
-    private Integer id;
-    private Integer idCompanhia;
+    private Integer idTotem;
+    private Integer fkCompanhia;
     private String fabricante;
     private String arquitetura;
     private String sistemaOperacional;
@@ -15,9 +15,9 @@ public class Totem {
     private String localizacaoTotem;
     private String token;
 
-    public Totem(Integer id, Integer idCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String codProcessador, String totalRam, String capacidadeTotalDisco, String modeloDisco, String localizacaoTotem, String token) {
-        this.id = id;
-        this.idCompanhia = idCompanhia;
+    public Totem(Integer idTotem, Integer fkCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String codProcessador, String totalRam, String capacidadeTotalDisco, String modeloDisco, String localizacaoTotem, String token) {
+        this.idTotem = idTotem;
+        this.fkCompanhia = fkCompanhia;
         this.fabricante = fabricante;
         this.arquitetura = arquitetura;
         this.sistemaOperacional = sistemaOperacional;
@@ -33,20 +33,20 @@ public class Totem {
     public Totem() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdTotem() {
+        return idTotem;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdTotem(Integer idTotem) {
+        this.idTotem = idTotem;
     }
 
-    public Integer getIdCompanhia() {
-        return idCompanhia;
+    public Integer getFkCompanhia() {
+        return fkCompanhia;
     }
 
-    public void setIdCompanhia(Integer idCompanhia) {
-        this.idCompanhia = idCompanhia;
+    public void setfkCompanhia(Integer fkCompanhia) {
+        this.fkCompanhia = fkCompanhia;
     }
 
     public String getFabricante() {
@@ -132,7 +132,7 @@ public class Totem {
     
     @Override
     public String toString() {
-        return "Totem{" + "id=" + id + ", idCompanhia=" + idCompanhia + 
+        return "Totem{" + "id=" + idTotem + ", idCompanhia=" + fkCompanhia + 
                 ", fabricante=" + fabricante + ", arquitetura=" + arquitetura + 
                 ", sistemaOperacional=" + sistemaOperacional + 
                 ", processador=" + processador + ", codProcessador=" + codProcessador +
