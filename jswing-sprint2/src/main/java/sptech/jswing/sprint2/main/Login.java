@@ -1,13 +1,10 @@
 package sptech.jswing.sprint2.main;
 
 import com.github.britooo.looca.api.core.Looca;
+import java.awt.Color;
 import sptech.jswing.sprint2.controllers.Totem;
 import sptech.jswing.sprint2.models.TotemCRUD;
 
-/**
- *
- * @author marcusgoncalves
- */
 public class Login extends javax.swing.JFrame {
 
     Looca looca = new Looca();
@@ -15,6 +12,18 @@ public class Login extends javax.swing.JFrame {
     //Cria o formulário de login
     public Login() {
         initComponents();
+    }
+
+    public void changeScreen(Totem totem) {
+        Summary in = new Summary();
+
+        in.setInfos(totem);
+
+        in.setLocationRelativeTo(null);
+        in.setVisible(true);
+        in.setResizable(false);
+
+        this.dispose();
     }
 
     //Não mexemos nesse código, pode quebrar o JFrame
@@ -26,6 +35,7 @@ public class Login extends javax.swing.JFrame {
         lblTituloInfo = new javax.swing.JLabel();
         iptToken = new javax.swing.JTextField();
         btnConectar = new javax.swing.JButton();
+        lblErro = new javax.swing.JLabel();
         imgBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,7 +60,7 @@ public class Login extends javax.swing.JFrame {
         lblTituloInfo.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloInfo.setText("Conecte o seu totem");
         jPanel1.add(lblTituloInfo);
-        lblTituloInfo.setBounds(350, 160, 602, 86);
+        lblTituloInfo.setBounds(350, 110, 602, 86);
 
         iptToken.setBackground(new java.awt.Color(217, 217, 217));
         iptToken.setFont(new java.awt.Font("ABeeZee", 0, 32)); // NOI18N
@@ -62,7 +72,7 @@ public class Login extends javax.swing.JFrame {
         iptToken.setPreferredSize(new java.awt.Dimension(425, 82));
         iptToken.setSize(new java.awt.Dimension(425, 82));
         jPanel1.add(iptToken);
-        iptToken.setBounds(430, 340, 425, 82);
+        iptToken.setBounds(430, 230, 425, 82);
 
         btnConectar.setBackground(new java.awt.Color(6, 83, 182));
         btnConectar.setFont(new java.awt.Font("Play", 1, 32)); // NOI18N
@@ -84,7 +94,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnConectar);
-        btnConectar.setBounds(430, 500, 425, 79);
+        btnConectar.setBounds(430, 390, 425, 79);
+
+        lblErro.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        lblErro.setForeground(new java.awt.Color(255, 255, 255));
+        lblErro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblErro);
+        lblErro.setBounds(332, 507, 600, 110);
 
         imgBackground.setBackground(new java.awt.Color(255, 255, 255));
         imgBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg.png"))); // NOI18N
@@ -111,8 +127,12 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        lblErro.setText("");
         TotemCRUD totemCrud = new TotemCRUD();
         Totem totem;
+
+        Color errColor = Color.decode("#EC2626");
+        Color successColor = Color.decode("#ABEA95");
 
         String tokenDigitado = iptToken.getText();
 
@@ -122,25 +142,28 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Select feito!");
             if (tokenDigitado.equals(totem.getToken())) {
                 System.out.println("Token válido! Redirecionando e iniciando capturas");
-
-                Summary in = new Summary();
-
-                in.setInfos(totem);
-
-                in.setLocationRelativeTo(null);
-                in.setVisible(true);
-                in.setResizable(false);
-
-                this.dispose();
-
+                lblErro.setForeground(successColor);
+                lblErro.setText("Conectando...");
+                
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(5000);
+                        changeScreen(totem);
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+                }).start();
+                
             } else {
-                System.out.println("Totem não encontrado com o token " + tokenDigitado);
+                System.out.println("Token inválido.");
+                lblErro.setForeground(errColor);
+                lblErro.setText("Token inválido! Tente novamente.");
             }
         } else {
             System.out.println("Token/Totem não encontrado no sistema, tente novamente!");
+            lblErro.setForeground(errColor);
+            lblErro.setText("Totem ou token não encontrado! Tente novamente.");
         }
-
-
     }//GEN-LAST:event_btnConectarActionPerformed
 
     public static void main(String args[]) {
@@ -157,6 +180,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel imgBackground;
     private javax.swing.JTextField iptToken;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblErro;
     private javax.swing.JLabel lblTituloInfo;
     // End of variables declaration//GEN-END:variables
 }
