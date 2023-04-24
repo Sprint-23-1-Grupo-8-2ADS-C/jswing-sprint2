@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Atualização de pacotes do Sistema Operacional"
+sleep 3
+
 sudo apt update -y && sudo apt upgrade -y #Atualizações para o usuário
 
 java -version #Verificando a versão atual do java
@@ -24,8 +27,11 @@ if [ $? = 0 ]; #se o retorno do comando anterior ? for igual a 0
 
 fi #fechamento do 1 if
 
-wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
 
-java -jar jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
+	echo "Baixando Projeto"
+		sleep 3
+		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
 
-
+	echo "Executando API"
+		sleep 3
+		java -jar jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
