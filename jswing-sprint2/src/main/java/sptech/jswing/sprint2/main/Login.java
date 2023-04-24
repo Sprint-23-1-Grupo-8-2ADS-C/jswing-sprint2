@@ -1,6 +1,7 @@
 package sptech.jswing.sprint2.main;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import java.awt.Color;
 import sptech.jswing.sprint2.controllers.Totem;
 import sptech.jswing.sprint2.models.TotemCRUD;
@@ -12,6 +13,8 @@ public class Login extends javax.swing.JFrame {
     //Cria o formulário de login
     public Login() {
         initComponents();
+//        DiscoGrupo discos = looca.getGrupoDeDiscos();
+//        System.out.println(discos.getVolumes());
     }
 
     public void changeScreen(Totem totem) {
@@ -144,7 +147,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println("Token válido! Redirecionando e iniciando capturas");
                 lblErro.setForeground(successColor);
                 lblErro.setText("Conectando...");
-                
+
                 new Thread(() -> {
                     try {
                         Thread.sleep(5000);
@@ -153,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                         System.err.println(e);
                     }
                 }).start();
-                
+
             } else {
                 System.out.println("Token inválido.");
                 lblErro.setForeground(errColor);
