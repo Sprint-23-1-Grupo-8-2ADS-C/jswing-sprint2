@@ -72,6 +72,8 @@ public class Login extends javax.swing.JFrame {
         btnConectar.setContentAreaFilled(false);
         btnConectar.setBorderPainted(false);
         btnConectar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConectar.setFocusPainted(false);
+        btnConectar.setFocusable(false);
         btnConectar.setMaximumSize(new java.awt.Dimension(425, 79));
         btnConectar.setMinimumSize(new java.awt.Dimension(425, 79));
         btnConectar.setOpaque(true);

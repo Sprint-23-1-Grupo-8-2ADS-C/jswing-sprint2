@@ -54,7 +54,7 @@ public class Summary extends javax.swing.JFrame {
         lblProcessadorValue = new javax.swing.JLabel();
         lblDisco = new javax.swing.JLabel();
         lblDiscoValue = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnDesconectar = new javax.swing.JButton();
         lblBgSummary = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,7 +108,7 @@ public class Summary extends javax.swing.JFrame {
         lblRamValue.setForeground(new java.awt.Color(248, 252, 255));
         lblRamValue.setText("16gb");
         jPanel1.add(lblRamValue);
-        lblRamValue.setBounds(240, 430, 190, 60);
+        lblRamValue.setBounds(240, 430, 180, 60);
 
         lblIP.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblIP.setForeground(new java.awt.Color(190, 212, 227));
@@ -158,19 +158,25 @@ public class Summary extends javax.swing.JFrame {
         jPanel1.add(lblDiscoValue);
         lblDiscoValue.setBounds(770, 420, 200, 70);
 
-        jButton1.setBackground(new java.awt.Color(236, 38, 38));
-        jButton1.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-exit.png"))); // NOI18N
-        jButton1.setText("Desconectar");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 10, true));
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusable(false);
-        jButton1.setMixingCutoutShape(null);
-        jButton1.setOpaque(true);
-        jPanel1.add(jButton1);
-        jButton1.setBounds(1018, 30, 200, 50);
+        btnDesconectar.setBackground(new java.awt.Color(236, 38, 38));
+        btnDesconectar.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnDesconectar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDesconectar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-exit.png"))); // NOI18N
+        btnDesconectar.setText("Desconectar");
+        btnDesconectar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 10, true));
+        btnDesconectar.setBorderPainted(false);
+        btnDesconectar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesconectar.setFocusPainted(false);
+        btnDesconectar.setFocusable(false);
+        btnDesconectar.setMixingCutoutShape(null);
+        btnDesconectar.setOpaque(true);
+        btnDesconectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesconectarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDesconectar);
+        btnDesconectar.setBounds(1018, 30, 200, 50);
 
         lblBgSummary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg-summary.png"))); // NOI18N
         lblBgSummary.setText("0");
@@ -195,6 +201,18 @@ public class Summary extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
+        // TODO add your handling code here:
+        Login out = new Login();
+        
+        out.setLocationRelativeTo(null);
+        out.setResizable(false);
+        out.setVisible(true);
+        this.dispose();
+        
+        System.out.println("Desconectando!");
+    }//GEN-LAST:event_btnDesconectarActionPerformed
+
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -205,7 +223,7 @@ public class Summary extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDesconectar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBgSummary;
     private javax.swing.JLabel lblDisco;
