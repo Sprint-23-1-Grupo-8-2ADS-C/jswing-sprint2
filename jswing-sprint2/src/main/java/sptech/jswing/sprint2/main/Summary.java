@@ -3,6 +3,7 @@ package sptech.jswing.sprint2.main;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
+import java.util.Arrays;
 import java.util.List;
 import sptech.jswing.sprint2.controllers.Totem;
 
@@ -27,11 +28,18 @@ public class Summary extends javax.swing.JFrame {
     public String setIp() {
         RedeInterfaceGroup rede = looca.getRede().getGrupoDeInterfaces();
         List<RedeInterface> interfaces = rede.getInterfaces();
-        List<String> ipv4 = interfaces.get(1).getEnderecoIpv4();
+        for (int i = 0; i < interfaces.size(); i++) {
+            RedeInterface interfaceAtual = interfaces.get(i);
+            List<String> ips = interfaceAtual.getEnderecoIpv4();
+            String ipv4 = Arrays.deepToString(ips.toArray()).replace("[", "").replace("]", "");
 
-        String ipv4Formatado = ipv4.toString().replace("[", "").replace("]", "");
+            if (!ipv4.equalsIgnoreCase("")) {
+                return ipv4;
+            }
+        }
 
-        return ipv4Formatado;
+//        String ipv4Formatado = ipv4.toString().replace("[", "").replace("]", "");
+        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -204,12 +212,12 @@ public class Summary extends javax.swing.JFrame {
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
         // TODO add your handling code here:
         Login out = new Login();
-        
+
         out.setLocationRelativeTo(null);
         out.setResizable(false);
         out.setVisible(true);
         this.dispose();
-        
+
         System.out.println("Desconectando!");
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
