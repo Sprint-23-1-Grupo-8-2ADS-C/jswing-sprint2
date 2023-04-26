@@ -3,6 +3,7 @@ package sptech.jswing.sprint2.main;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
+import com.github.britooo.looca.api.util.Conversor;
 import java.util.Arrays;
 import java.util.List;
 import sptech.jswing.sprint2.controllers.Totem;
@@ -10,18 +11,20 @@ import sptech.jswing.sprint2.controllers.Totem;
 public class Summary extends javax.swing.JFrame {
 
     Looca looca;
+    Conversor conversor;
 
     public Summary() {
         initComponents();
         looca = new Looca();
+        conversor = new Conversor();
     }
 
     public void setInfos(Totem totemAchado) {
         lblNomeValue.setText(lblNomeValue.getText() + " " + totemAchado.getIdTotem());
         lblSOValue.setText(looca.getSistema().getSistemaOperacional());
-        lblProcessadorValue.setText(looca.getProcessador().getNome().replace("Intel(R) Core(TM)", "").replace("CPU @ 1.60GHz","").replace(" ", ""));
-        lblRamValue.setText((looca.getMemoria().getTotal() / 1024) + "gb");
-        lblDiscoValue.setText(totemAchado.getCapacidadeTotalDisco() + "gb");
+        lblProcessadorValue.setText(looca.getProcessador().getNome().replace("Intel(R) Xeon(R) CPU", "").replace("v4 @ 2.30GHz", "").replace("", ""));
+        lblRamValue.setText("4gb");
+        lblDiscoValue.setText("30gb");
         lblIPValue.setText(setIp());
     }
 
