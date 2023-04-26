@@ -8,24 +8,16 @@ public class Totem {
     private String arquitetura;
     private String sistemaOperacional;
     private String processador;
-    private String codProcessador;
-    private String totalRam;
-    private String capacidadeTotalDisco;
-    private String modeloDisco;
     private String localizacaoTotem;
     private String token;
 
-    public Totem(Integer idTotem, Integer fkCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String codProcessador, String totalRam, String capacidadeTotalDisco, String modeloDisco, String localizacaoTotem, String token) {
+    public Totem(Integer idTotem, Integer fkCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String localizacaoTotem, String token) {
         this.idTotem = idTotem;
         this.fkCompanhia = fkCompanhia;
         this.fabricante = fabricante;
         this.arquitetura = arquitetura;
         this.sistemaOperacional = sistemaOperacional;
         this.processador = processador;
-        this.codProcessador = codProcessador;
-        this.totalRam = totalRam;
-        this.capacidadeTotalDisco = capacidadeTotalDisco;
-        this.modeloDisco = modeloDisco;
         this.localizacaoTotem = localizacaoTotem;
         this.token = token;
     }
@@ -81,38 +73,6 @@ public class Totem {
         this.processador = processador;
     }
 
-    public String getCodProcessador() {
-        return codProcessador;
-    }
-
-    public void setCodProcessador(String codProcessador) {
-        this.codProcessador = codProcessador;
-    }
-
-    public String getTotalRam() {
-        return totalRam;
-    }
-
-    public void setTotalRam(String totalRam) {
-        this.totalRam = totalRam;
-    }
-
-    public String getCapacidadeTotalDisco() {
-        return capacidadeTotalDisco;
-    }
-
-    public void setCapacidadeTotalDisco(String capacidadeTotalDisco) {
-        this.capacidadeTotalDisco = capacidadeTotalDisco;
-    }
-
-    public String getModeloDisco() {
-        return modeloDisco;
-    }
-
-    public void setModeloDisco(String modeloDisco) {
-        this.modeloDisco = modeloDisco;
-    }
-
     public String getLocalizacaoTotem() {
         return localizacaoTotem;
     }
@@ -129,15 +89,9 @@ public class Totem {
         this.token = token;
     }
 
-    
     @Override
     public String toString() {
-        return "Totem{" + "id=" + idTotem + ", idCompanhia=" + fkCompanhia + 
-                ", fabricante=" + fabricante + ", arquitetura=" + arquitetura + 
-                ", sistemaOperacional=" + sistemaOperacional + 
-                ", processador=" + processador + ", codProcessador=" + codProcessador +
-                ", totalRam=" + totalRam + ", capacidadeTotalDisco=" + capacidadeTotalDisco 
-                + ", modeloDisco=" + modeloDisco + ", localizacaoTotem=" + localizacaoTotem + ", token=" + token + '}';
+        return "Totem{" + "idTotem=" + idTotem + ", fkCompanhia=" + fkCompanhia + ", fabricante=" + fabricante + ", arquitetura=" + arquitetura + ", sistemaOperacional=" + sistemaOperacional + ", processador=" + processador + ", localizacaoTotem=" + localizacaoTotem + ", token=" + token + '}';
     }
     
     

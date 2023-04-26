@@ -3,6 +3,7 @@ package sptech.jswing.sprint2.main;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
+import com.github.britooo.looca.api.util.Conversor;
 import java.util.Arrays;
 import java.util.List;
 import sptech.jswing.sprint2.controllers.Totem;
@@ -10,18 +11,20 @@ import sptech.jswing.sprint2.controllers.Totem;
 public class Summary extends javax.swing.JFrame {
 
     Looca looca;
+    Conversor conversor;
 
     public Summary() {
         initComponents();
         looca = new Looca();
+        conversor = new Conversor();
     }
 
     public void setInfos(Totem totemAchado) {
         lblNomeValue.setText(lblNomeValue.getText() + " " + totemAchado.getIdTotem());
         lblSOValue.setText(looca.getSistema().getSistemaOperacional());
-        lblProcessadorValue.setText(totemAchado.getProcessador());
-        lblRamValue.setText(totemAchado.getTotalRam() + "gb");
-        lblDiscoValue.setText(totemAchado.getCapacidadeTotalDisco() + "gb");
+        lblProcessadorValue.setText(looca.getProcessador().getNome().replace("Intel(R) Xeon(R) CPU", "").replace("v4 @ 2.30GHz", "").replace("", ""));
+        lblRamValue.setText("4gb");
+        lblDiscoValue.setText("30gb");
         lblIPValue.setText(setIp());
     }
 
@@ -84,9 +87,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblNome.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblNome.setForeground(new java.awt.Color(190, 212, 227));
+        lblNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNome.setText("Nome");
         jPanel1.add(lblNome);
-        lblNome.setBounds(240, 210, 42, 19);
+        lblNome.setBounds(210, 200, 100, 30);
 
         lblNomeValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblNomeValue.setForeground(new java.awt.Color(248, 252, 255));
@@ -96,9 +100,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblSO.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblSO.setForeground(new java.awt.Color(190, 212, 227));
+        lblSO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSO.setText("Sistema Operacional");
         jPanel1.add(lblSO);
-        lblSO.setBounds(240, 310, 160, 19);
+        lblSO.setBounds(200, 300, 230, 40);
 
         lblSOValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblSOValue.setForeground(new java.awt.Color(248, 252, 255));
@@ -108,9 +113,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblRam.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblRam.setForeground(new java.awt.Color(190, 212, 227));
+        lblRam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRam.setText("Total Ram");
         jPanel1.add(lblRam);
-        lblRam.setBounds(240, 420, 80, 19);
+        lblRam.setBounds(210, 400, 140, 40);
 
         lblRamValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblRamValue.setForeground(new java.awt.Color(248, 252, 255));
@@ -132,9 +138,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblEstado.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(190, 212, 227));
+        lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEstado.setText("Estado");
         jPanel1.add(lblEstado);
-        lblEstado.setBounds(770, 210, 60, 19);
+        lblEstado.setBounds(750, 200, 100, 30);
 
         lblEstadoValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblEstadoValue.setForeground(new java.awt.Color(171, 234, 149));
@@ -144,9 +151,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblProcessador.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblProcessador.setForeground(new java.awt.Color(190, 212, 227));
+        lblProcessador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblProcessador.setText("Processador");
         jPanel1.add(lblProcessador);
-        lblProcessador.setBounds(770, 310, 100, 19);
+        lblProcessador.setBounds(720, 290, 180, 40);
 
         lblProcessadorValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblProcessadorValue.setForeground(new java.awt.Color(248, 255, 255));
@@ -156,9 +164,10 @@ public class Summary extends javax.swing.JFrame {
 
         lblDisco.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(190, 212, 227));
+        lblDisco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDisco.setText("Total Disco");
         jPanel1.add(lblDisco);
-        lblDisco.setBounds(770, 410, 80, 19);
+        lblDisco.setBounds(740, 400, 140, 40);
 
         lblDiscoValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblDiscoValue.setForeground(new java.awt.Color(248, 255, 255));

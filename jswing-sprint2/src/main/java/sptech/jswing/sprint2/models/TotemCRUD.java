@@ -12,7 +12,7 @@ public class TotemCRUD {
         Connection con = new Connection();
         JdbcTemplate cursor = con.getConnection();
 
-        List<Totem> validacao = cursor.query(String.format("SELECT * FROM totem WHERE token LIKE '%s';", token)
+        List<Totem> validacao = cursor.query(String.format("SELECT * FROM totem as t JOIN componenteTotem as ct ON  t.idTotem = ct.fkTotem JOIN componente as c ON c.idComponente = ct.fkComponente;", token)
                 , new BeanPropertyRowMapper(Totem.class));
         for (Totem totem : validacao) {
             return totem;

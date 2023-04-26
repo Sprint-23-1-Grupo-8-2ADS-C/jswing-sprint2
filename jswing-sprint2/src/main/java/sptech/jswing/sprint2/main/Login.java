@@ -1,7 +1,7 @@
 package sptech.jswing.sprint2.main;
 
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.discos.DiscoGrupo;
+import com.github.britooo.looca.api.group.processador.Processador;
 import java.awt.Color;
 import sptech.jswing.sprint2.controllers.Totem;
 import sptech.jswing.sprint2.models.TotemCRUD;
@@ -13,8 +13,8 @@ public class Login extends javax.swing.JFrame {
     //Cria o formulário de login
     public Login() {
         initComponents();
-//        DiscoGrupo discos = looca.getGrupoDeDiscos();
-//        System.out.println(discos.getVolumes());
+        Processador cpu = looca.getProcessador();
+        System.out.println(cpu.getNome());
     }
 
     public void changeScreen(Totem totem) {
@@ -61,9 +61,10 @@ public class Login extends javax.swing.JFrame {
 
         lblTituloInfo.setFont(new java.awt.Font("Roboto Slab", 0, 64)); // NOI18N
         lblTituloInfo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloInfo.setText("Conecte o seu totem");
         jPanel1.add(lblTituloInfo);
-        lblTituloInfo.setBounds(350, 110, 602, 86);
+        lblTituloInfo.setBounds(270, 110, 770, 86);
 
         iptToken.setBackground(new java.awt.Color(217, 217, 217));
         iptToken.setFont(new java.awt.Font("ABeeZee", 0, 32)); // NOI18N
