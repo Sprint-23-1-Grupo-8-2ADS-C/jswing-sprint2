@@ -30,8 +30,8 @@ fi #fechamento do 1 if
 
 	echo "Baixando Projeto"
 		sleep 3
-		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
+		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-v1.1.jar
 
 	echo "Executando API"
 		sleep 3
-		java -jar jswing-sprint2-1.0-SNAPSHOT-jar-with-dependencies.jar
+		java -jar jswing-sprint2-v1.1.jar
