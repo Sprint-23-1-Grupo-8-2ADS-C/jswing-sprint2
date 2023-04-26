@@ -13,6 +13,8 @@ public class Login extends javax.swing.JFrame {
     //Cria o formulário de login
     public Login() {
         initComponents();
+        Processador cpu = looca.getProcessador();
+        System.out.println(cpu.getNome());
     }
 
     public void changeScreen(Totem totem) {
