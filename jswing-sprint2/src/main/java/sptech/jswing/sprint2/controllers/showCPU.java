@@ -1,22 +1,47 @@
 package sptech.jswing.sprint2.controllers;
 
-import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.util.Conversor;
+import java.time.Instant;
 
 
-public class showCPU {
-    @Setter @Getter private Double usoCpu;
-    @Setter @Getter private Double frequencia;
-    @Setter @Getter private List<String> processos;
-    @Setter @Getter private String dataHora;
-
-    public showCPU(){}
+public class ShowCPU {
+   private Looca looca = new Looca();
+   private Processador processador = looca.getProcessador();
+   
+   public String nomeCpu(){
+        return processador.getNome();
+    }
     
-    public showCPU(Double usoCpu, Double frequencia, List<String> processos, String dataHora) {
-        this.usoCpu = usoCpu;
-        this.frequencia = frequencia;
-        this.processos = processos;
-        this.dataHora = dataHora;
+    public String fabricanteCpu(){
+        return processador.getFabricante();
+    }
+    
+    public Double showFrequenciaCpu(){
+        return Double.valueOf(processador.getFrequencia());
+    }
+    
+    public String showModeloCpu(){
+        return processador.getIdentificador();
+    }
+    
+    public Double showClockCpu(){
+        Integer clock = processador.getNumeroCpusFisicas() + processador.getNumeroCpusLogicas();
+        Double d = clock.doubleValue();
+        return d;
+    }
+    
+    public Double showUsoCpu(){
+        return processador.getUso();
+    }
+    
+    public String showTempoAtividade(){
+        Long tempo = looca.getSistema().getTempoDeAtividade();
+        return Conversor.formatarSegundosDecorridos(tempo);
+    }
+   
+    public Instant showInicializado(){
+        return looca.getSistema().getInicializado(); 
     }
 }

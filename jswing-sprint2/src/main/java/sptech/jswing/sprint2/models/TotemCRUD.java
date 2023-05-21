@@ -107,7 +107,6 @@ public class TotemCRUD {
             List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();
 
             for(RedeInterface redeInterface : rede){
-                System.out.println(redeInterface);
                 if(redeInterface.getEnderecoIpv4().size() > 0){
                     ipv4.add(redeInterface.getEnderecoIpv4().get(0));
                 }

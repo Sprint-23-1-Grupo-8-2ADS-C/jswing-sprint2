@@ -29,24 +29,7 @@ public class Summary extends javax.swing.JFrame {
                     util.replaceProcessador(totem.getProcessador()));
         lblRamValue.setText(util.convertByteForGb(totem.showRam().getTotal()) + "gb");
         lblDiscoValue.setText(util.convertByteForGb(totem.showDisco().getTotal()) + "gb");
-        lblIPValue.setText(setIp());
-    }
-
-    public String setIp() {
-        RedeInterfaceGroup rede = looca.getRede().getGrupoDeInterfaces();
-        List<RedeInterface> interfaces = rede.getInterfaces();
-        for (int i = 0; i < interfaces.size(); i++) {
-            RedeInterface interfaceAtual = interfaces.get(i);
-            List<String> ips = interfaceAtual.getEnderecoIpv4();
-            String ipv4 = Arrays.deepToString(ips.toArray()).replace("[", "").replace("]", "");
-
-            if (!ipv4.equalsIgnoreCase("")) {
-                return ipv4;
-            }
-        }
-
-//        String ipv4Formatado = ipv4.toString().replace("[", "").replace("]", "");
-        return "";
+        lblIPValue.setText(totem.showRede().getEnderecoIPv4Totem());
     }
 
     @SuppressWarnings("unchecked")

@@ -36,4 +36,11 @@ public class Totem {
     public ComponenteTotem showDisco(){
         return componentes.get(1);
     }
+    
+    public ComponenteTotem showCpu(){
+        return componentes.get(2);
+    }
+    public ComponenteTotem showRede(){
+        return componentes.get(3);
+    }
 }
