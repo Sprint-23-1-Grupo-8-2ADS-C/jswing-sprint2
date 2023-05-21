@@ -88,6 +88,14 @@
             <artifactId>httpmime</artifactId>
             <version>4.5.14</version>
         </dependency>
+        
+        <!-- Getters and Setter one line -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     
 </project>

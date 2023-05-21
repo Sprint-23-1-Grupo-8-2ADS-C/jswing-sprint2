@@ -3,10 +3,6 @@ package sptech.jswing.sprint2.models;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-/**
- *
- * @author marcusgoncalves
- */
 public class Connection {
     private JdbcTemplate connection;
 
