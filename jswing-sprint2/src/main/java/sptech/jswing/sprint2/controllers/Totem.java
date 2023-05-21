@@ -1,16 +1,23 @@
 package sptech.jswing.sprint2.controllers;
 
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Totem {
-    private Integer idTotem;
-    private Integer fkCompanhia;
-    private String fabricante;
-    private String arquitetura;
-    private String sistemaOperacional;
-    private String processador;
-    private String localizacaoTotem;
-    private String token;
+    @Getter @Setter private Integer idTotem;
+    @Getter @Setter private Integer fkCompanhia;
+    @Getter @Setter private String fabricante;
+    @Getter @Setter private String arquitetura;
+    @Getter @Setter private String sistemaOperacional;
+    @Getter @Setter private String processador;
+    @Getter @Setter private String localizacaoTotem;
+    @Getter @Setter private String token;
 
+    @Getter @Setter private List<ComponenteTotem> componentes; 
+    
+    public Totem(){}
+    
     public Totem(Integer idTotem, Integer fkCompanhia, String fabricante, String arquitetura, String sistemaOperacional, String processador, String localizacaoTotem, String token) {
         this.idTotem = idTotem;
         this.fkCompanhia = fkCompanhia;
@@ -22,77 +29,18 @@ public class Totem {
         this.token = token;
     }
 
-    public Totem() {
-    }
-
-    public Integer getIdTotem() {
-        return idTotem;
-    }
-
-    public void setIdTotem(Integer idTotem) {
-        this.idTotem = idTotem;
-    }
-
-    public Integer getFkCompanhia() {
-        return fkCompanhia;
-    }
-
-    public void setfkCompanhia(Integer fkCompanhia) {
-        this.fkCompanhia = fkCompanhia;
-    }
-
-    public String getFabricante() {
-        return fabricante;
-    }
-
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
-    }
-
-    public String getArquitetura() {
-        return arquitetura;
-    }
-
-    public void setArquitetura(String arquitetura) {
-        this.arquitetura = arquitetura;
-    }
-
-    public String getSistemaOperacional() {
-        return sistemaOperacional;
-    }
-
-    public void setSistemaOperacional(String sistemaOperacional) {
-        this.sistemaOperacional = sistemaOperacional;
-    }
-
-    public String getProcessador() {
-        return processador;
-    }
-
-    public void setProcessador(String processador) {
-        this.processador = processador;
-    }
-
-    public String getLocalizacaoTotem() {
-        return localizacaoTotem;
-    }
-
-    public void setLocalizacaoTotem(String localizacaoTotem) {
-        this.localizacaoTotem = localizacaoTotem;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    @Override
-    public String toString() {
-        return "Totem{" + "idTotem=" + idTotem + ", fkCompanhia=" + fkCompanhia + ", fabricante=" + fabricante + ", arquitetura=" + arquitetura + ", sistemaOperacional=" + sistemaOperacional + ", processador=" + processador + ", localizacaoTotem=" + localizacaoTotem + ", token=" + token + '}';
+    public ComponenteTotem showRam(){
+        return componentes.get(0);
     }
     
+    public ComponenteTotem showDisco(){
+        return componentes.get(1);
+    }
     
+    public ComponenteTotem showCpu(){
+        return componentes.get(2);
+    }
+    public ComponenteTotem showRede(){
+        return componentes.get(3);
+    }
 }

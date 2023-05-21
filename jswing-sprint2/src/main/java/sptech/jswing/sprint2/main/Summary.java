@@ -7,42 +7,29 @@ import com.github.britooo.looca.api.util.Conversor;
 import java.util.Arrays;
 import java.util.List;
 import sptech.jswing.sprint2.controllers.Totem;
+import sptech.jswing.sprint2.models.Util;
 
 public class Summary extends javax.swing.JFrame {
 
     Looca looca;
     Conversor conversor;
+    Util util; 
 
     public Summary() {
         initComponents();
         looca = new Looca();
         conversor = new Conversor();
+        util = new Util();
     }
 
-    public void setInfos(Totem totemAchado) {
-        lblNomeValue.setText(lblNomeValue.getText() + " " + totemAchado.getIdTotem());
-        lblSOValue.setText(looca.getSistema().getSistemaOperacional());
-        lblProcessadorValue.setText(looca.getProcessador().getNome().replace("Intel(R) Xeon(R) CPU", "").replace("v4 @ 2.30GHz", "").replace("", ""));
-        lblRamValue.setText("4gb");
-        lblDiscoValue.setText("30gb");
-        lblIPValue.setText(setIp());
-    }
-
-    public String setIp() {
-        RedeInterfaceGroup rede = looca.getRede().getGrupoDeInterfaces();
-        List<RedeInterface> interfaces = rede.getInterfaces();
-        for (int i = 0; i < interfaces.size(); i++) {
-            RedeInterface interfaceAtual = interfaces.get(i);
-            List<String> ips = interfaceAtual.getEnderecoIpv4();
-            String ipv4 = Arrays.deepToString(ips.toArray()).replace("[", "").replace("]", "");
-
-            if (!ipv4.equalsIgnoreCase("")) {
-                return ipv4;
-            }
-        }
-
-//        String ipv4Formatado = ipv4.toString().replace("[", "").replace("]", "");
-        return "";
+    public void setInfos(Totem totem) {
+        lblNomeValue.setText(lblNomeValue.getText() + " " + totem.getIdTotem());
+        lblSOValue.setText(totem.getSistemaOperacional());
+        lblProcessadorValue.setText(
+                    util.replaceProcessador(totem.getProcessador()));
+        lblRamValue.setText(util.convertByteForGb(totem.showRam().getTotal()) + "gb");
+        lblDiscoValue.setText(util.convertByteForGb(totem.showDisco().getTotal()) + "gb");
+        lblIPValue.setText(totem.showRede().getEnderecoIPv4Totem());
     }
 
     @SuppressWarnings("unchecked")

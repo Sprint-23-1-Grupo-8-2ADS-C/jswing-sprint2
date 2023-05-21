@@ -14,7 +14,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         Processador cpu = looca.getProcessador();
-        System.out.println(cpu.getNome());
     }
 
     public void changeScreen(Totem totem) {
@@ -141,11 +140,10 @@ public class Login extends javax.swing.JFrame {
         String tokenDigitado = iptToken.getText();
 
         totem = totemCrud.getTotemByToken(tokenDigitado);
-
+       
         if (totem != null) {
             System.out.println("Select feito!");
             if (tokenDigitado.equals(totem.getToken())) {
-                System.out.println("Token válido! Redirecionando e iniciando capturas");
                 lblErro.setForeground(successColor);
                 lblErro.setText("Conectando...");
 
@@ -159,12 +157,10 @@ public class Login extends javax.swing.JFrame {
                 }).start();
 
             } else {
-                System.out.println("Token inválido.");
                 lblErro.setForeground(errColor);
                 lblErro.setText("Token inválido! Tente novamente.");
             }
         } else {
-            System.out.println("Token/Totem não encontrado no sistema, tente novamente!");
             lblErro.setForeground(errColor);
             lblErro.setText("Totem ou token não encontrado! Tente novamente.");
         }
