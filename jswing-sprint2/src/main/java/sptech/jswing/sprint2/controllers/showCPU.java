@@ -32,8 +32,8 @@ public class ShowCPU {
         return d;
     }
     
-    public Double showUsoCpu(){
-        return processador.getUso();
+    public Integer showUsoCpu(){
+        return processador.getUso().intValue();
     }
     
     public String showTempoAtividade(){

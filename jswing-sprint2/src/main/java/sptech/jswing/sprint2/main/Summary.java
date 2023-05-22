@@ -1,35 +1,57 @@
 package sptech.jswing.sprint2.main;
 
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.rede.RedeInterface;
-import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
 import com.github.britooo.looca.api.util.Conversor;
-import java.util.Arrays;
-import java.util.List;
+
 import sptech.jswing.sprint2.controllers.Totem;
+import sptech.jswing.sprint2.models.RegistroTotemCRUD;
 import sptech.jswing.sprint2.models.Util;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import sptech.jswing.sprint2.models.TotemCRUD;
 
 public class Summary extends javax.swing.JFrame {
 
     Looca looca;
     Conversor conversor;
     Util util; 
+    RegistroTotemCRUD registro;
+    String token;
 
     public Summary() {
         initComponents();
         looca = new Looca();
         conversor = new Conversor();
         util = new Util();
+        registro = new RegistroTotemCRUD();
     }
 
     public void setInfos(Totem totem) {
+        token = totem.getToken();
         lblNomeValue.setText(lblNomeValue.getText() + " " + totem.getIdTotem());
+        
         lblSOValue.setText(totem.getSistemaOperacional());
-        lblProcessadorValue.setText(
-                    util.replaceProcessador(totem.getProcessador()));
+        
+        lblProcessadorValue.setText(totem.getProcessador());
+        
         lblRamValue.setText(util.convertByteForGb(totem.showRam().getTotal()) + "gb");
+        
         lblDiscoValue.setText(util.convertByteForGb(totem.showDisco().getTotal()) + "gb");
+        
         lblIPValue.setText(totem.showRede().getEnderecoIPv4Totem());
+        
+        
+        try{
+            registro.insertRegistroComponente(
+                    totem.getIdTotem(), 
+                    totem.getFkCompanhia(),
+                    totem.getToken()
+            ); 
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -61,7 +83,6 @@ public class Summary extends javax.swing.JFrame {
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jPanel1.setSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
         lblTituloInfos.setFont(new java.awt.Font("Roboto Slab", 0, 64)); // NOI18N
@@ -115,7 +136,7 @@ public class Summary extends javax.swing.JFrame {
         lblIP.setForeground(new java.awt.Color(190, 212, 227));
         lblIP.setText("IPv4");
         jPanel1.add(lblIP);
-        lblIP.setBounds(240, 530, 50, 19);
+        lblIP.setBounds(240, 530, 50, 21);
 
         lblIPValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblIPValue.setForeground(new java.awt.Color(248, 255, 255));
@@ -172,8 +193,6 @@ public class Summary extends javax.swing.JFrame {
         btnDesconectar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDesconectar.setFocusPainted(false);
         btnDesconectar.setFocusable(false);
-        btnDesconectar.setMixingCutoutShape(null);
-        btnDesconectar.setOpaque(true);
         btnDesconectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDesconectarActionPerformed(evt);
@@ -207,6 +226,9 @@ public class Summary extends javax.swing.JFrame {
 
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
         // TODO add your handling code here:
+        TotemCRUD totem = new TotemCRUD();
+        totem.updateBoolCaptura(token, 0);
+        
         Login out = new Login();
 
         out.setLocationRelativeTo(null);

@@ -144,6 +144,9 @@ public class Login extends javax.swing.JFrame {
         if (totem != null) {
             System.out.println("Select feito!");
             if (tokenDigitado.equals(totem.getToken())) {
+                
+                totemCrud.updateBoolCaptura(totem.getToken(), 1);
+                
                 lblErro.setForeground(successColor);
                 lblErro.setText("Conectando...");
 

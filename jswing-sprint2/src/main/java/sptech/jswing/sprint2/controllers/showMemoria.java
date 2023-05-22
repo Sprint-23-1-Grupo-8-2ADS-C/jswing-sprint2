@@ -10,15 +10,15 @@ public class ShowMemoria {
         return memoria;
     }
     
-    public Long usoRam(){
+    public Long showUsoRam(){
         return memoria.getEmUso();
     }
     
-    public Long disponivelRam(){
+    public Long showDisponivelRam(){
         return memoria.getDisponivel();
     }
     
-    public Long totalRam(){
+    public Long showTotalRam(){
         return memoria.getTotal();
     }
 }

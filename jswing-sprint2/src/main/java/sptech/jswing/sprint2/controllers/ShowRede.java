@@ -11,7 +11,7 @@ public class ShowRede {
   private Looca looca = new Looca();
   private Rede rede = looca.getRede();
   
-  public Long bytesRecebidos(){
+  public Long showBytesRecebidos(){
     List ipv4 = new ArrayList(); 
 
     List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();
@@ -25,7 +25,7 @@ public class ShowRede {
     return null;
   }
   
-  public Long bytesEnviados(){
+  public Long showBytesEnviados(){
     List ipv4 = new ArrayList(); 
 
     List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();

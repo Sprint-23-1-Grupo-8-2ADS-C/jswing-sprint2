@@ -9,7 +9,7 @@ import java.util.List;
 public class ShowDisco {
     private Looca looca = new Looca();
     
-    public String nomeDisco(){
+    public String showNomeDisco(){
         List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();         
         return discos.get(0).getNome();
     }
@@ -19,7 +19,7 @@ public class ShowDisco {
         return discos.get(0).getTamanho();
     }
     
-    public Double showUsado() {
+    public Double showUsoDisco() {
         File disk = new File("/"); // diretório raiz do disco
         long totalSpace = disk.getTotalSpace(); // tamanho total do disco em bytes
         long usedSpace = totalSpace - disk.getFreeSpace(); // espaço usado em bytes

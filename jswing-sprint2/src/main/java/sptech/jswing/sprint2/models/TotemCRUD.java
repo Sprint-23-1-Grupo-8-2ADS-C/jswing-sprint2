@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import sptech.jswing.sprint2.controllers.Totem;
 
 import java.util.List;
+import java.util.Map;
 import sptech.jswing.sprint2.controllers.ComponenteTotem;
 
 public class TotemCRUD {
@@ -36,6 +37,14 @@ public class TotemCRUD {
         
         totem.setComponentes(componentes);
         return totem;
+    }
+    public void updateBoolCaptura(String token, Integer bool){
+        con.update("UPDATE totem SET boolCaptura = ? WHERE token = ?", bool, token);
+    }
+    
+    public Map<String, Object> selectBoolCaptura(String token){
+        Map<String, Object> bool = con.queryForMap("SELECT boolCaptura FROM totem WHERE token = ?", token);
+        return bool;
     }
     
     public void updateTotemInformation(Integer idTotem){
