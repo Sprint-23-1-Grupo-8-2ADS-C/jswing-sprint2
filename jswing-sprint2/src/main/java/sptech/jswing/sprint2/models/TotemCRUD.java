@@ -9,13 +9,20 @@ import sptech.jswing.sprint2.controllers.Totem;
 
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import sptech.jswing.sprint2.controllers.ComponenteTotem;
+
+import javax.swing.*;  
 
 public class TotemCRUD {
         
-    private Connection conexao = new Connection();
-    private JdbcTemplate con = conexao.getConnection();
     private Looca looca = new Looca();
+    
+    private Connection conexao = new Connection(false);
+    private JdbcTemplate con = conexao.getConnection();
+    
+    private Connection conexaoLocal = new Connection(false);
+    private JdbcTemplate conLocal = conexaoLocal.getConnection();
     
     public Totem getTotemByToken(String token) {
         List<Totem> validacaoTotem = con.query("SELECT * FROM totem WHERE token = ?"
@@ -26,7 +33,14 @@ public class TotemCRUD {
         //VALIDANDO SE FOI INSERIDO PELO USUÁRIO OS DADOS DO TOTEM
         if(totem.getProcessador() == null){
             updateTotemInformation(totem.getIdTotem());
+            
+            validacaoTotem = con.query("SELECT * FROM totem WHERE token = ?"
+                , new BeanPropertyRowMapper(Totem.class), token);
+        
+            totem = validacaoTotem.get(0);
         }
+        
+        
         
         //VALIDANDO SE OS COMPONENTES DO TOTEM JÁ FORAM CADASTRADOS
         validationComponenteTotem(totem.getIdTotem(), totem.getFkCompanhia());
@@ -38,6 +52,7 @@ public class TotemCRUD {
         totem.setComponentes(componentes);
         return totem;
     }
+    
     public void updateBoolCaptura(String token, Integer bool){
         con.update("UPDATE totem SET boolCaptura = ? WHERE token = ?", bool, token);
     }
@@ -56,6 +71,10 @@ public class TotemCRUD {
         
         con.update("UPDATE Totem SET fabricante = ?, arquitetura = ?, sistemaOperacional = ?, processador = ? WHERE idTotem = ?",
                     fabricante, arquitetura, sistemaOperacional, processador, idTotem);
+        
+        
+        JOptionPane.showMessageDialog(null, "Notamos que seu totem não está com algumas informações cadastradas. \n"
+                                        + "Faremos isso para você de forma automática.");
     }
     
     public void validationComponenteTotem(Integer idTotem, Integer idCompanhia){
