@@ -4,35 +4,92 @@
  */
 package sptech.jswing.sprint2.log;
 
-import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.util.Conversor;
+
 
 /**
  *
  * @author NauanaCoelhodosSanto
  */
-public class LogInformacoes {
+public class LogInformacoes {    
     private String dataAtual;
-    private String horaAtual;    
-
-    public void getData(){
-        Date dataHoraAtual = new Date();
+    private String horaAtual; 
     
-        dataAtual = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+    Looca looca;
+    Conversor conversor;
+
+
+    public LogInformacoes(){
+        looca = new Looca();
+        conversor = new Conversor();
+        
+        
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        dataAtual = dateTime.format(formatter);
+        
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HHmmss");
+        horaAtual = time.format(formatterTime);
     }
     
-    public void getHora(){
-        Date dataHoraAtual = new Date();
     
-        horaAtual = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-    }
 
-    @Override
-    public String toString() {
+    public void getDataHora(){
+        
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        dataAtual = dateTime.format(formatter);
+        
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+        horaAtual = time.format(formatterTime);
+        
+    }
+    
+    public String formarLogWarning(String token){
         return String.format("-------------------------------------------------------------------------------\n" +
-        ">Log Session: %d%d", dataAtual, horaAtual);
+        ">Log Session: %s %s\n"
+       +">System Info:\n"
+       +"  Projec version:             = Airplane-Solutions-1.0.0\n"
+       +"  Java version:               = Java 17.0.0\n"
+       +"  Operating System:           = %s\n"
+       +"  Processor:                  = %s\n"
+       +"  Memory:                     = %s\n"
+       +"  Memory in use:              = %s\n"
+       +"  Disk:                       = SLA VAI VIM AINDA\n"
+       +"  Acess Token:                = %s\n"
+       +"  Warning:                    = Foi emitido um aviso de alerta para o Slack", dataAtual, horaAtual, looca.getSistema().getSistemaOperacional(), looca.getProcessador().getNome(), 
+            conversor.formatarBytes(looca.getMemoria().getTotal()), conversor.formatarBytes(looca.getMemoria().getEmUso()), token);
+    }
+    
+    public String formarLogInfo(String token){
+        return String.format("-------------------------------------------------------------------------------\n" +
+        ">Log Session: %s %s\n"
+       +">System Info:\n"
+       +"  Projec version:             = Airplane-Solutions-1.0.0\n"
+       +"  Java version:               = Java 17.0.0\n"
+       +"  Operating System:           = %s\n"
+       +"  Processor:                  = %s\n"
+       +"  Memory:                     = %s\n"
+       +"  Memory in use:              = %s\n"
+       +"  Disk:                       = SLA VAI VIM AINDA\n"
+       +"  Acess Token:                = %s\n"
+       +"  Information:                = Login realizado com sucesso!", dataAtual, horaAtual, looca.getSistema().getSistemaOperacional(), looca.getProcessador().getNome(), 
+            conversor.formatarBytes(looca.getMemoria().getTotal()), conversor.formatarBytes(looca.getMemoria().getEmUso()), token);
+    }
+
+    public String getDataAtual() {
+        return dataAtual;
+    }
+
+    public String getHoraAtual() {
+        return horaAtual;
     }
     
 }
