@@ -28,6 +28,7 @@ public class LogInformacoes {
         looca = new Looca();
         conversor = new Conversor();
         
+        
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         dataAtual = dateTime.format(formatter);
@@ -51,25 +52,7 @@ public class LogInformacoes {
         
     }
     
-    public String formarLog(){
-        return String.format("-------------------------------------------------------------------------------\n" +
-        ">Log Session: %s %s\n"
-       +">System Info:\n"
-       +"  Projec version:             = Airplane-Solutions-1.0.0\n"
-       +"  Java version:               = Java 17.0.0\n"
-       +"  Operating System:           = \n"
-       +"  Processor:                  = \n"
-       +"  Memory:                     = \n"
-       +"  Memory in use:              = \n"
-       +"  Disk:                       = \n"
-       +"  Warning:                    = ", dataAtual, horaAtual);
-    }
-    
-    public String formarLog(String token){
-        String disco = null;
-        
-        
-      
+    public String formarLogWarning(String token){
         return String.format("-------------------------------------------------------------------------------\n" +
         ">Log Session: %s %s\n"
        +">System Info:\n"
@@ -79,9 +62,25 @@ public class LogInformacoes {
        +"  Processor:                  = %s\n"
        +"  Memory:                     = %s\n"
        +"  Memory in use:              = %s\n"
-       +"  Disk:                       = %s\n"
+       +"  Disk:                       = SLA VAI VIM AINDA\n"
        +"  Acess Token:                = %s\n"
-       +"  Information:                = ", dataAtual, horaAtual, looca.getSistema().getSistemaOperacional(), looca.getProcessador().getNome(), 
+       +"  Warning:                    = Foi emitido um aviso de alerta para o Slack", dataAtual, horaAtual, looca.getSistema().getSistemaOperacional(), looca.getProcessador().getNome(), 
+            conversor.formatarBytes(looca.getMemoria().getTotal()), conversor.formatarBytes(looca.getMemoria().getEmUso()), token);
+    }
+    
+    public String formarLogInfo(String token){
+        return String.format("-------------------------------------------------------------------------------\n" +
+        ">Log Session: %s %s\n"
+       +">System Info:\n"
+       +"  Projec version:             = Airplane-Solutions-1.0.0\n"
+       +"  Java version:               = Java 17.0.0\n"
+       +"  Operating System:           = %s\n"
+       +"  Processor:                  = %s\n"
+       +"  Memory:                     = %s\n"
+       +"  Memory in use:              = %s\n"
+       +"  Disk:                       = SLA VAI VIM AINDA\n"
+       +"  Acess Token:                = %s\n"
+       +"  Information:                = Login realizado com sucesso!", dataAtual, horaAtual, looca.getSistema().getSistemaOperacional(), looca.getProcessador().getNome(), 
             conversor.formatarBytes(looca.getMemoria().getTotal()), conversor.formatarBytes(looca.getMemoria().getEmUso()), token);
     }
 
