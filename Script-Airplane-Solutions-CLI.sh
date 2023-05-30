@@ -39,12 +39,12 @@ sleep 3
 
 sudo systemctl enable docker # Habilitando Docker
 
-if [ $VERSAO -eq 17 ]; then
-    echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Baixando Projeto"
-    sleep 3
-    wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-v1.1.jar
-
-    echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Executando API"
-    sleep 3
-    java -jar jswing-sprint2-v1.1.jar
-fi
+#if [ $VERSAO -eq 17 ]; then
+#    echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Baixando Projeto"
+#    sleep 3
+#    wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-v1.1.jar
+#
+#    echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Executando API"
+#    sleep 3
+#    java -jar jswing-sprint2-v1.1.jar
+#fi
