@@ -16,17 +16,18 @@ import javax.swing.*;
 
 public class TotemCRUD {
         
-    private Looca looca = new Looca();
+    private final Looca looca = new Looca();
     
-    private Connection conexao = new Connection(false);
-    private JdbcTemplate con = conexao.getConnection();
+    private final Connection conexao = new Connection(true);
+    private final JdbcTemplate con = conexao.getConnection();
     
-    private Connection conexaoLocal = new Connection(false);
-    private JdbcTemplate conLocal = conexaoLocal.getConnection();
+    private final Connection conexaoLocal = new Connection(false);
+    private final JdbcTemplate conLocal = conexaoLocal.getConnection();
     
     public Totem getTotemByToken(String token) {
         List<Totem> validacaoTotem = con.query("SELECT * FROM totem WHERE token = ?"
                 , new BeanPropertyRowMapper(Totem.class), token);
+        System.out.println(validacaoTotem);
         
         Totem totem = validacaoTotem.get(0);
         
@@ -40,7 +41,7 @@ public class TotemCRUD {
             totem = validacaoTotem.get(0);
         }
         
-        
+        insertTotemLocal(totem);
         
         //VALIDANDO SE OS COMPONENTES DO TOTEM JÁ FORAM CADASTRADOS
         validationComponenteTotem(totem.getIdTotem(), totem.getFkCompanhia());
@@ -86,41 +87,82 @@ public class TotemCRUD {
     
     public void insertComponenteRam(Integer idTotem, Integer idCompanhia){
         Integer idComponente = 1;
-        List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
-                new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
         
-        if(componente.isEmpty()){
-            long total = looca.getMemoria().getTotal();
+        // INSERINDO NA NUVEM
+        if(idCompanhia != 0){
+            List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
 
-            con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, total, fkCompanhia) VALUES (?,?,?,?)",
-                        idTotem, idComponente, total, idCompanhia);
+            if(componente.isEmpty()){
+                long total = looca.getMemoria().getTotal();
+
+                con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, total, fkCompanhia) VALUES (?,?,?,?)",
+                            idTotem, idComponente, total, idCompanhia);
+            }
         }
+        else{
+            //INSERINDO LOCAL
+            List<ComponenteTotem> componente = conLocal.query("SELECT * FROM componenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+
+            if(componente.isEmpty()){
+                long total = looca.getMemoria().getTotal();
+
+                conLocal.update("INSERT INTO componenteTotem(fkTotem, fkComponente, total) VALUES (?,?,?)",
+                            idTotem, idComponente, total);
+            }
+        }
+        
     }
     
     public void insertComponenteDisco(Integer idTotem, Integer idCompanhia){
         Integer idComponente = 2;
-        List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
-                new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
-        
-        if(componente.isEmpty()){
-            long total = looca.getGrupoDeDiscos().getTamanhoTotal();
-            
-            con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, TOTAL, fkCompanhia) VALUES (?,?,?,?)",
-                        idTotem, idComponente, total, idCompanhia);
+        if(idCompanhia != 0){
+            List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+
+            if(componente.isEmpty()){
+                long total = looca.getGrupoDeDiscos().getTamanhoTotal();
+
+                con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, total, fkCompanhia) VALUES (?,?,?,?)",
+                            idTotem, idComponente, total, idCompanhia);
+            }
+        }
+        else{
+            List<ComponenteTotem> componente = conLocal.query("SELECT * FROM componenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+
+            if(componente.isEmpty()){
+                long total = looca.getGrupoDeDiscos().getTamanhoTotal();
+
+                conLocal.update("INSERT INTO componenteTotem(fkTotem, fkComponente, total) VALUES (?,?,?)",
+                            idTotem, idComponente, total);
+            }
         }
     }
     
     public void insertComponenteCpu(Integer idTotem, Integer idCompanhia){
         Integer idComponente = 3;
-        List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
-                new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+        long frequencia = looca.getProcessador().getFrequencia();
+        String descricaoCpu = looca.getProcessador().getIdentificador();
         
-        if(componente.isEmpty()){
-            long frequencia = looca.getProcessador().getFrequencia();
-            String descricaoCpu = looca.getProcessador().getIdentificador();
-            
-            con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, frequencia, descricao, fkCompanhia) VALUES (?,?,?,?,?)",
-                        idTotem, idComponente, frequencia, descricaoCpu, idCompanhia);
+        if(idCompanhia != 0){
+            List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+
+            if(componente.isEmpty()){
+                con.update("INSERT INTO ComponenteTotem(fkTotem, fkComponente, frequencia, descricao, fkCompanhia) VALUES (?,?,?,?,?)",
+                            idTotem, idComponente, frequencia, descricaoCpu, idCompanhia);
+            }
+        }
+        else{
+            List<ComponenteTotem> componente = conLocal.query("SELECT * FROM componenteTotem WHERE fkComponente = ? AND fkTotem = ?", 
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
+
+            if(componente.isEmpty()){
+                conLocal.update("INSERT INTO componenteTotem(fkTotem, fkComponente, frequencia, descricao) VALUES (?,?,?,?)",
+                            idTotem, idComponente, frequencia, descricaoCpu);
+            }
         }
     }
     
@@ -128,28 +170,88 @@ public class TotemCRUD {
         List ipv4 = new ArrayList(); 
         Integer idComponente = 4; 
         
-        List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?",
-                new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
-        
-        if(componente.isEmpty()){
-            List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();
+        if(idCompanhia != 0){
+            List<ComponenteTotem> componente = con.query("SELECT * FROM ComponenteTotem WHERE fkComponente = ? AND fkTotem = ?",
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
 
-            for(RedeInterface redeInterface : rede){
-                if(redeInterface.getEnderecoIpv4().size() > 0){
-                    ipv4.add(redeInterface.getEnderecoIpv4().get(0));
+            if(componente.isEmpty()){
+                List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();
+
+                for(RedeInterface redeInterface : rede){
+                    if(redeInterface.getEnderecoIpv4().size() > 0){
+                        ipv4.add(redeInterface.getEnderecoIpv4().get(0));
+                    }
+                }
+
+                if(ipv4.size() >= 2){
+                    con.update("INSERT INTO ComponenteTotem (fkTotem, fkComponente, enderecoIPv4Rede, enderecoIPv4Totem, fkCompanhia) VALUES (?,?,?,?,?)",
+                            idTotem, idComponente, ipv4.get(0), ipv4.get(1), idCompanhia);
+                }
+
+                if(ipv4.size() == 1){
+                    con.update("INSERT INTO ComponenteTotem (fkTotem, fkComponente, enderecoIPv4Totem, fkCompanhia) VALUES (?,?,?,?)",
+                            idTotem, idComponente, ipv4.get(0), idCompanhia);
                 }
             }
+        }
+        else{
+            List<ComponenteTotem> componente = conLocal.query("SELECT * FROM componenteTotem WHERE fkComponente = ? AND fkTotem = ?",
+                    new BeanPropertyRowMapper(ComponenteTotem.class), idComponente, idTotem);
 
-            if(ipv4.size() >= 2){
-                con.update("INSERT INTO ComponenteTotem (fkTotem, fkComponente, enderecoIPv4Rede, enderecoIPv4Totem, fkCompanhia) VALUES (?,?,?,?,?)",
-                        idTotem, idComponente, ipv4.get(0), ipv4.get(1), idCompanhia);
-            }
+            if(componente.isEmpty()){
+                List<RedeInterface> rede = looca.getRede().getGrupoDeInterfaces().getInterfaces();
 
-            if(ipv4.size() == 1){
-                con.update("INSERT INTO ComponenteTotem (fkTotem, fkComponente, enderecoIPv4Totem, fkCompanhia) VALUES (?,?,?,?)",
-                        idTotem, idComponente, ipv4.get(0), idCompanhia);
+                for(RedeInterface redeInterface : rede){
+                    if(redeInterface.getEnderecoIpv4().size() > 0){
+                        ipv4.add(redeInterface.getEnderecoIpv4().get(0));
+                    }
+                }
+
+                if(ipv4.size() >= 2){
+                    conLocal.update("INSERT INTO componenteTotem (fkTotem, fkComponente, enderecoIPv4Rede, enderecoIPv4Totem) VALUES (?,?,?,?)",
+                            idTotem, idComponente, ipv4.get(0), ipv4.get(1));
+                }
+
+                if(ipv4.size() == 1){
+                    conLocal.update("INSERT INTO componenteTotem (fkTotem, fkComponente, enderecoIPv4Totem) VALUES (?,?,?)",
+                            idTotem, idComponente, ipv4.get(0));
+                }
             }
         }
     }
+        
+        
+    // INSERINDO NO BANCO LOCAL 
+    public void insertTotemLocal(Totem totem){
+        //VALIDANDO SE JÁ EXISTEM UM TOTEM CADASTRADO COM O token
+        Map<String, Object> mapTotem = conLocal.queryForMap("SELECT COUNT(*) totemCadastrado FROM totem WHERE token = ?", totem.getToken());
+ 
+        Integer hasTotem = Integer.parseInt(mapTotem.get("totemCadastrado").toString());
+   
+        //INSERINDO OS DADOS CASO NÃO TENHA MÁQUINA
+        if(hasTotem == 0){
+            conLocal.update("INSERT INTO totem(token, arquitetura, sistemaOperacional, processador) VALUES(?,?,?,?);",
+                    totem.getToken(), totem.getArquitetura(), totem.getSistemaOperacional(), totem.getProcessador());
+        }
+        
+        // PEGANDO O ID DO TOTEM QUE FOI CADASTRADO
+        mapTotem = conLocal.queryForMap("SELECT idTotem FROM totem WHERE token = ?", totem.getToken());
+
+        Integer idTotem = Integer.parseInt(mapTotem.get("idTotem").toString());
+        
+        validationComponenteTotem(idTotem, 0);
+    }
     
+    public List<Integer> getListComponente(String token){
+        List<Map<String, Object>> mapComponente = conLocal.queryForList("SELECT idComponenteTotem FROM componenteTotem c\n" +
+                                                                "INNER JOIN totem t ON t.idTotem = c.fkTotem\n" +
+                                                                "WHERE t.token = ?", token);
+        
+        List<Integer> listIdComponenteTotem = new ArrayList();
+        
+        for(Map<String, Object> componente : mapComponente){
+            listIdComponenteTotem.add(Integer.parseInt(componente.get("idComponenteTotem").toString()));
+        }
+        return listIdComponenteTotem;
+    }
 }   
