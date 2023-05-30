@@ -3,12 +3,18 @@ package sptech.jswing.sprint2.main;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.processador.Processador;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sptech.jswing.sprint2.controllers.Totem;
 import sptech.jswing.sprint2.models.TotemCRUD;
+import sptech.jswing.sprint2.log.GerationLog;
+import sptech.jswing.sprint2.log.LogInformacoes;
 
 public class Login extends javax.swing.JFrame {
 
     Looca looca = new Looca();
+    LogInformacoes log = new LogInformacoes();
 
     //Cria o formulário de login
     public Login() {
@@ -133,6 +139,7 @@ public class Login extends javax.swing.JFrame {
         lblErro.setText("");
         TotemCRUD totemCrud = new TotemCRUD();
         Totem totem;
+        log.getDataHora();
 
         Color errColor = Color.decode("#EC2626");
         Color successColor = Color.decode("#ABEA95");
@@ -145,19 +152,25 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Select feito!");
             if (tokenDigitado.equals(totem.getToken())) {
                 
-                totemCrud.updateBoolCaptura(totem.getToken(), 1);
-                
-                lblErro.setForeground(successColor);
-                lblErro.setText("Conectando...");
-
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(5000);
-                        changeScreen(totem);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                }).start();
+                try {
+                    totemCrud.updateBoolCaptura(totem.getToken(), 1);
+                    
+                    lblErro.setForeground(successColor);
+                    lblErro.setText("Conectando...");
+                    
+                    GerationLog.gerarLog(log.formarLogInfo(tokenDigitado));
+                    
+                    new Thread(() -> {
+                        try {
+                            Thread.sleep(5000);
+                            changeScreen(totem);
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        }
+                    }).start();
+                } catch (IOException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             } else {
                 lblErro.setForeground(errColor);

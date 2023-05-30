@@ -16,9 +16,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class RegistroTotemCRUD {
-    private Connection conexao = new Connection();
-    private JdbcTemplate con = conexao.getConnection();
+    
     private Looca looca = new Looca();
+    
+    private Connection conexao = new Connection(false);
+    private JdbcTemplate con = conexao.getConnection();
+    
+    private Connection conexaoLocal = new Connection(false);
+    private JdbcTemplate conLocal = conexaoLocal.getConnection();
+    
     
     public void insertRegistroComponente(Integer fkTotem, Integer fkCompanhia, String token){
         TotemCRUD totemCrud = new TotemCRUD();
