@@ -21,6 +21,12 @@ if [ $? = 0 ]; #se o retorno do comando anterior ? for igual a 0
 
 	then #entao,
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você possui Docker instalado!" #print no terminal
+		clear
+		sleep 3
+		
+		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Inicializando container"
+		sudo docker start AirplaneSolutionsDB
+		sudo docker exec -it AirplaneSolutionDB
 	else
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você não possui Docker instalado, resolverei isso!" #print no terminal
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você gostaria de instalar o Docker? [s/n]" #print no terminal
@@ -59,6 +65,7 @@ if [ $? = 0 ]; #se o retorno do comando anterior ? for igual a 0
 
 	then #entao,
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você possui java instalado!" #print no terminal
+		VERSAO=17
 		
 	else #se não,
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você não possui java instalado, mas posso resolver isso!" #print no terminal
@@ -93,7 +100,7 @@ if [ $VERSAO -eq 17 ]
 	then
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Baixando Projeto"
 		sleep 3
-		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/jswing-sprint2-v1.1.jar
+		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/airplane-solutions.jar
 
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Executando API"
 		sleep 3
