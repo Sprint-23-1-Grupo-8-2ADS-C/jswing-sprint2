@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sptech.jswing.sprint2.log;
 
 import java.io.BufferedWriter;
@@ -12,10 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- *
- * @author NauanaCoelhodosSanto
- */
 public class GerationLog {
           public static void gerarLog(String mensagem) throws IOException{
           LogInformacoes logInfo = new LogInformacoes();
