@@ -26,7 +26,6 @@ if [ $? = 0 ]; #se o retorno do comando anterior ? for igual a 0
 		
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Inicializando container"
 		sudo docker start AirplaneSolutionsDB
-		sudo docker exec -it AirplaneSolutionDB
 	else
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você não possui Docker instalado, resolverei isso!" #print no terminal
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Você gostaria de instalar o Docker? [s/n]" #print no terminal
@@ -50,6 +49,9 @@ if [ $? = 0 ]; #se o retorno do comando anterior ? for igual a 0
 
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Habilitando o Docker para iniciar automaticamente na inicialização do sistema!"
 		sudo systemctl enable docker # Habilitando Docker
+		
+		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Inicializando container"
+		sudo docker start AirplaneSolutionsDB
 		
 	fi #Fechamento do 2 if
 
@@ -100,7 +102,7 @@ if [ $VERSAO -eq 17 ]
 	then
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Baixando Projeto"
 		sleep 3
-		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/jswing-sprint2/raw/main/airplane-solutions.jar
+		wget https://github.com/Sprint-23-1-Grupo-8-2ADS-C/Jar-Executavel/raw/main/airplane-solutions.jar
 
 		echo "$(tput setaf 4)[Bot Airplaner]:$(tput setaf 7) Executando API"
 		sleep 3
