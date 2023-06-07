@@ -107,11 +107,9 @@ public class RegistroTotemCRUD {
         Integer fkComponente = 3;
         ShowCPU cpu = new ShowCPU();
 
-//        Integer usoCpu = cpu.showUsoCpu();
-        Integer usoCpu = 80;
+        Integer usoCpu = cpu.showUsoCpu();
         Double clockCpu = cpu.showClockCpu();
-        String tempoAtividade = "04:00:00";
-//        String tempoAtividade = cpu.showTempoAtividade();
+        String tempoAtividade = cpu.showTempoAtividade();
         Date inicializado = Date.from(cpu.showInicializado());
 
         if (usoCpu >= 80) {

@@ -31,11 +31,13 @@ public class TotemCRUD {
         }
         catch(Exception e){
             TableCreate t = new TableCreate();
-            
+            t.creatTables();;
         }
     }
     
     public Totem getTotemByToken(String token) {
+        validationTables();
+        
         List<Totem> validacaoTotem = con.query("SELECT * FROM totem WHERE token = ?"
                 , new BeanPropertyRowMapper(Totem.class), token);
         System.out.println(validacaoTotem);
