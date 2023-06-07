@@ -113,7 +113,7 @@ public class Summary extends javax.swing.JFrame {
         jPanel1.add(lblSO);
         lblSO.setBounds(200, 300, 230, 40);
 
-        lblSOValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
+        lblSOValue.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         lblSOValue.setForeground(new java.awt.Color(248, 252, 255));
         lblSOValue.setText("Linux");
         jPanel1.add(lblSOValue);
@@ -149,13 +149,13 @@ public class Summary extends javax.swing.JFrame {
         lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEstado.setText("Estado");
         jPanel1.add(lblEstado);
-        lblEstado.setBounds(750, 200, 100, 30);
+        lblEstado.setBounds(740, 200, 100, 30);
 
         lblEstadoValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblEstadoValue.setForeground(new java.awt.Color(171, 234, 149));
         lblEstadoValue.setText("Ativo");
         jPanel1.add(lblEstadoValue);
-        lblEstadoValue.setBounds(770, 230, 290, 50);
+        lblEstadoValue.setBounds(760, 230, 290, 50);
 
         lblProcessador.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblProcessador.setForeground(new java.awt.Color(190, 212, 227));
@@ -164,24 +164,24 @@ public class Summary extends javax.swing.JFrame {
         jPanel1.add(lblProcessador);
         lblProcessador.setBounds(720, 290, 180, 40);
 
-        lblProcessadorValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
+        lblProcessadorValue.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         lblProcessadorValue.setForeground(new java.awt.Color(248, 255, 255));
         lblProcessadorValue.setText("i5-1000");
         jPanel1.add(lblProcessadorValue);
-        lblProcessadorValue.setBounds(770, 320, 320, 60);
+        lblProcessadorValue.setBounds(760, 320, 320, 60);
 
         lblDisco.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblDisco.setForeground(new java.awt.Color(190, 212, 227));
         lblDisco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDisco.setText("Total Disco");
         jPanel1.add(lblDisco);
-        lblDisco.setBounds(740, 400, 140, 40);
+        lblDisco.setBounds(720, 400, 140, 40);
 
         lblDiscoValue.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         lblDiscoValue.setForeground(new java.awt.Color(248, 255, 255));
         lblDiscoValue.setText("128gb");
         jPanel1.add(lblDiscoValue);
-        lblDiscoValue.setBounds(770, 420, 200, 70);
+        lblDiscoValue.setBounds(750, 420, 200, 70);
 
         btnDesconectar.setBackground(new java.awt.Color(236, 38, 38));
         btnDesconectar.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N

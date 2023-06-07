@@ -24,6 +24,17 @@ public class TotemCRUD {
     private final Connection conexaoLocal = new Connection(false);
     private final JdbcTemplate conLocal = conexaoLocal.getConnection();
     
+    
+    public void validationTables(){
+        try{
+            conLocal.queryForRowSet("SELECT * FROM componente");
+        }
+        catch(Exception e){
+            TableCreate t = new TableCreate();
+            
+        }
+    }
+    
     public Totem getTotemByToken(String token) {
         List<Totem> validacaoTotem = con.query("SELECT * FROM totem WHERE token = ?"
                 , new BeanPropertyRowMapper(Totem.class), token);
